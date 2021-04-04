@@ -8,7 +8,7 @@ use destvil\Core\Application;
 
 include $_SERVER['DOCUMENT_ROOT'] . '/public/pages/layout/header.php';
 ?>
-<div class="container pt-5 task-list">
+<div class="container pt-2 task-list">
     <div class="row">
         <div class="col-6 mx-auto">
         <div class="card">
@@ -39,7 +39,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/public/pages/layout/header.php';
             </div>
                 <!-- regionend sort -->
             <?php endif; ?>
-            <div class="card-body px-0 pt-0">
+            <div class="card-body px-0 p-0">
                 <?php if (!empty($data['tasks'])): ?>
 
                     <?php foreach ($data['tasks'] as $task): ?>
@@ -78,24 +78,24 @@ include $_SERVER['DOCUMENT_ROOT'] . '/public/pages/layout/header.php';
                         <nav>
                             <ul class="pagination justify-content-center task-list-pagination">
                                 <li class="page-item<?= $data['currPageNum'] == 1 ? ' disabled' : '';?>">
-                                    <a class="page-link" href="#" data-page="1">
+                                    <button class="page-link" data-page="1">
                                         <span aria-hidden="true">&laquo;</span>
-                                    </a>
+                                    </button>
                                 </li>
                                 <?php
                                 $firstPageNav = ($data['currPage'] - 1) < 1 ? 1 : ($data['currPage'] - 1);
                                 ?>
                                 <?php for($currNavPage = $firstPageNav; $currNavPage <= $data['lastPageNum']; $currNavPage++): ?>
                                     <li class="page-item<?= $data['currPageNum'] == $currNavPage ? ' disabled' : '';?>">
-                                        <a class="page-link" href="#" data-page="<?= $currNavPage ?>">
+                                        <button class="page-link" data-page="<?= $currNavPage ?>">
                                             <?= $currNavPage ?>
-                                        </a>
+                                        </button>
                                     </li>
                                 <?php endfor; ?>
                                 <li class="page-item<?= $data['currPageNum'] == $data['lastPageNum'] ? ' disabled' : '';?>">
-                                    <a class="page-link" href="#" data-page="<?=$data['lastPageNum'] ?>">
+                                    <button class="page-link" data-page="<?=$data['lastPageNum'] ?>">
                                         <span aria-hidden="true">&raquo;</span>
-                                    </a>
+                                    </button>
                                 </li>
                             </ul>
                         </nav>

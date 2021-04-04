@@ -41,13 +41,11 @@
         </div>
     </nav>
 </header>
-<div class="header-toasts position-relative">
-    <div class="toast-container position-absolute top-0 end-0 p-3">
-        <?php if (!empty($data['notify'])): ?>
-            <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-                <div class="toast-body"><?= $data['notify'] ?></div>
-            </div>
-        <?php endif; ?>
-    </div>
+<div class="header-toast-container toast-container position-absolute top-0 end-0 p-3">
+    <?php if (!empty($data['notify'])): ?>
+        <div class="toast bg-white" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-body"><?= $data['notify'] ?></div>
+        </div>
+    <?php endif; ?>
 </div>
 <main id="main">

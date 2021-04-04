@@ -6,7 +6,7 @@
 
 use destvil\Core\Application;
 
-include Application::getInstance()->getDocumentRoot() . '/public/pages/layout/header.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/public/pages/layout/header.php';
 ?>
 <div class="container pt-5 task-list">
     <div class="row">
@@ -110,4 +110,4 @@ include Application::getInstance()->getDocumentRoot() . '/public/pages/layout/he
 <script type="module" src="/public/pages/task/script.js"></script>
 
 <?php
-include Application::getInstance()->getDocumentRoot() . '/public/pages/layout/footer.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/public/pages/layout/footer.php';

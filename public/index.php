@@ -19,16 +19,13 @@ use destvil\Routing\RouterConfig;
 error_reporting(E_ERROR);
 ini_set('display_errors', 'On');
 
-include dirname(__DIR__) . '/vendor/autoloader.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoloader.php';
 
-$autoloader = new Autoloader(dirname(__DIR__));
+$autoloader = new Autoloader();
 
 $autoloader->register();
 $autoloader->registerPrefix('app');
 $autoloader->registerPrefix('vendor');
-
-$application = Application::getInstance();
-$application->setDocumentRoot(dirname(__DIR__));
 
 $request = new Request();
 $sessionManager = new SessionManager();
@@ -39,7 +36,7 @@ if (!$sessionManager->has('token')) {
     $sessionManager->set('token', $request->generateCSRFToken());
 }
 
-$connectionData = include $application->getDocumentRoot() . '/config/database.php';
+$connectionData = include $_SERVER['DOCUMENT_ROOT'] . '/config/database.php';
 $connectionConfig = new MysqliConnectionConfig(
     $connectionData['host'],
     $connectionData['login'],
@@ -56,7 +53,7 @@ $controllerManager = new ControllerManager();
 $routerConfig = new RouterConfig();
 
 /** @var Closure $callback */
-$routesCallback = include $application->getDocumentRoot() . '/config/routes.php';
+$routesCallback = include $_SERVER['DOCUMENT_ROOT'] . '/config/routes.php';
 $routesCallback($routerConfig);
 $router = new Router($routerConfig);
 try {

@@ -5,13 +5,10 @@ namespace destvil;
 
 
 class Autoloader {
-    protected string $documentRoot;
     protected array $registeredPrefix;
 
-    public function __construct(?string $documentRoot = null) {
+    public function __construct() {
         $this->registeredPrefix = array();
-
-        $this->documentRoot = $documentRoot ?? $_SERVER['DOCUMENT_ROOT'];
     }
 
     public function registerPrefix(string $prefix): Autoloader {
@@ -29,7 +26,7 @@ class Autoloader {
             $prefix = str_replace('\\', DIRECTORY_SEPARATOR, trim($prefix));
             $classPath = sprintf(
                 '%s' . DIRECTORY_SEPARATOR . '%s' . DIRECTORY_SEPARATOR . '%s.php',
-                $this->documentRoot,
+                $_SERVER['DOCUMENT_ROOT'],
                 $prefix,
                 $class
             );
@@ -39,7 +36,7 @@ class Autoloader {
             }
         }
 
-        $classPath = sprintf('%s' . DIRECTORY_SEPARATOR . '%s.php', $this->documentRoot, $class);
+        $classPath = sprintf('%s' . DIRECTORY_SEPARATOR . '%s.php', $_SERVER['DOCUMENT_ROOT'], $class);
         if (is_readable($classPath)) {
             include $classPath;
             return;

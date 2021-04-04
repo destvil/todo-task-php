@@ -9,7 +9,7 @@ class View {
         $data = array_merge($this->getUserData(), $data);
 
         $templatePath = trim($templatePath, '/');
-        $path = $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . $templatePath;
+        $path = Application::getInstance()->getDocumentRoot() . DIRECTORY_SEPARATOR . $templatePath;
         if (!is_readable($path)) {
             throw new \Exception('Template not found');
         }

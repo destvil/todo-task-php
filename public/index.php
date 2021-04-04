@@ -8,6 +8,7 @@ use destvil\Connection\ConnectionPool;
 use destvil\Connection\Exception\SqlConnectException;
 use destvil\Connection\MysqliConnection;
 use destvil\Connection\MysqliConnectionConfig;
+use destvil\Core\Application;
 use destvil\Core\ControllerManager;
 use destvil\Core\Request;
 use destvil\Core\SessionManager;
@@ -18,13 +19,16 @@ use destvil\Routing\RouterConfig;
 error_reporting(E_ERROR);
 ini_set('display_errors', 'On');
 
-include $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoloader.php';
+include dirname(__DIR__) . '/vendor/autoloader.php';
 
-$autoloader = new Autoloader();
+$autoloader = new Autoloader(dirname(__DIR__));
 
 $autoloader->register();
 $autoloader->registerPrefix('app');
 $autoloader->registerPrefix('vendor');
+
+$application = Application::getInstance();
+$application->setDocumentRoot(dirname(__DIR__));
 
 $request = new Request();
 $sessionManager = new SessionManager();
@@ -35,7 +39,7 @@ if (!$sessionManager->has('token')) {
     $sessionManager->set('token', $request->generateCSRFToken());
 }
 
-$connectionData = include $_SERVER['DOCUMENT_ROOT'] . '/config/database.php';
+$connectionData = include $application->getDocumentRoot() . '/config/database.php';
 $connectionConfig = new MysqliConnectionConfig(
     $connectionData['host'],
     $connectionData['login'],
@@ -52,7 +56,7 @@ $controllerManager = new ControllerManager();
 $routerConfig = new RouterConfig();
 
 /** @var Closure $callback */
-$routesCallback = include $_SERVER['DOCUMENT_ROOT'] . '/config/routes.php';
+$routesCallback = include $application->getDocumentRoot() . '/config/routes.php';
 $routesCallback($routerConfig);
 $router = new Router($routerConfig);
 try {

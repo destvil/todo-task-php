@@ -4,7 +4,9 @@
  * @var array $data
  */
 
-include $_SERVER['DOCUMENT_ROOT'] . '/public/pages/layout/header.php';
+use destvil\Core\Application;
+
+include Application::getInstance()->getDocumentRoot() . '/public/pages/layout/header.php';
 ?>
 <div class="container pt-5 task-list">
     <div class="row">
@@ -108,4 +110,4 @@ include $_SERVER['DOCUMENT_ROOT'] . '/public/pages/layout/header.php';
 <script type="module" src="/public/pages/task/script.js"></script>
 
 <?php
-include $_SERVER['DOCUMENT_ROOT'] . '/public/pages/layout/footer.php';
+include Application::getInstance()->getDocumentRoot() . '/public/pages/layout/footer.php';

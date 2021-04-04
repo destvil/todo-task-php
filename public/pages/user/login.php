@@ -4,7 +4,9 @@
  * @var array $data
  */
 
-include $_SERVER['DOCUMENT_ROOT'] . '/public/pages/layout/header.php';
+use destvil\Core\Application;
+
+include Application::getInstance()->getDocumentRoot() . '/public/pages/layout/header.php';
 ?>
 <div class="container">
     <div class="row">
@@ -33,4 +35,4 @@ include $_SERVER['DOCUMENT_ROOT'] . '/public/pages/layout/header.php';
     </div>
 </div>
 <?php
-include $_SERVER['DOCUMENT_ROOT'] . '/public/pages/layout/footer.php';
+include Application::getInstance()->getDocumentRoot() . '/public/pages/layout/footer.php';

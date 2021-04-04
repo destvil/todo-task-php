@@ -1,0 +1,21 @@
+#header {
+    height: 56px;
+}
+
+#main {
+    min-height: calc(100vh - 56px);
+}
+
+.task-list-sort .list-group-item-action:before,
+.task-list-sort .list-group-item-action:after {
+    position: absolute;
+    right: 10px;
+}
+
+.task-list-sort .list-group-item-action[data-order="asc"]:after {
+    content: ' \25B2';
+}
+
+.task-list-sort .list-group-item-action[data-order="desc"]:after {
+    content: ' \25BC';
+}

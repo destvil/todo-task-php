@@ -1,0 +1,25 @@
+html,
+body {
+    background: rgb(248,248,248);
+    height: 100%;
+}
+
+body {
+    display: flex;
+}
+
+.error-container {
+    max-width: 42em;
+}
+
+.error-code {
+    color: rgb(156,156,156);
+}
+
+.error-title {
+    color: rgb(184,184,184);
+}
+
+.error-description {
+    color: rgb(172,174,173);
+}

@@ -23,6 +23,8 @@ class MysqliConnection implements ConnectionInterface {
         if ($this->connection->connect_errno) {
             throw new SqlConnectException($this->connection->connect_error, $this->connection->connect_errno);
         }
+
+        $this->connection->set_charset('utf8');
     }
 
     public function close(): void {
